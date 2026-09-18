@@ -1,0 +1,677 @@
+/* Minimalist Top Navigation */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.25rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform var(--transition-normal), background-color var(--transition-normal), backdrop-filter var(--transition-normal);
+  background: transparent;
+}
+
+.site-nav.scrolled {
+  background: rgba(9, 9, 9, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.nav-logo {
+  font-family: var(--font-serif-editorial);
+  font-size: 1.4rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--text-light-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-logo .heart-dot {
+  color: var(--red-accent);
+  font-size: 1.1rem;
+  animation: gentlePulse 3s infinite ease-in-out;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-link {
+  font-size: var(--fs-small);
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  color: var(--text-light-secondary);
+  position: relative;
+  padding: 0.25rem 0;
+  transition: color var(--transition-fast);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--pink-main);
+  transition: width var(--transition-normal);
+}
+
+.nav-link:hover {
+  color: var(--pink-light);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-mobile-toggle {
+  display: none;
+  color: var(--text-light-primary);
+  font-size: 1.5rem;
+}
+
+/* Opening Experience Overlay */
+#opening-screen {
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg-black-deep);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.2s;
+}
+
+#opening-screen.opened {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.opening-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: rgba(243, 166, 188, 0.08);
+  border: 1px solid rgba(243, 166, 188, 0.2);
+  color: var(--pink-light);
+  font-size: var(--fs-micro);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 2rem;
+  animation: fadeInDown 1s ease-out;
+}
+
+.opening-title {
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  color: var(--text-light-primary);
+  margin-bottom: 1.25rem;
+  font-family: var(--font-serif-display);
+  font-style: italic;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s 0.3s forwards var(--ease-out);
+}
+
+.opening-subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: var(--text-light-secondary);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  margin-bottom: 3.5rem;
+  max-width: 500px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s 0.6s forwards var(--ease-out);
+}
+
+.btn-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 2.2rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(243, 166, 188, 0.35);
+  color: var(--text-light-primary);
+  font-size: var(--fs-small);
+  letter-spacing: 0.05em;
+  transition: all var(--transition-normal);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s 0.9s forwards var(--ease-out);
+}
+
+.btn-open:hover {
+  background: var(--pink-main);
+  border-color: var(--pink-main);
+  color: var(--bg-black-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(233, 142, 170, 0.3);
+}
+
+.btn-open span.arrow {
+  transition: transform var(--transition-normal);
+}
+
+.btn-open:hover span.arrow {
+  transform: translateX(4px);
+}
+
+/* Badges */
+.badge-pill {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.badge-dark {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--pink-light);
+  border: 1px solid rgba(243, 166, 188, 0.2);
+}
+
+.badge-light {
+  background: rgba(233, 142, 170, 0.12);
+  color: var(--pink-deep);
+  border: 1px solid rgba(233, 142, 170, 0.25);
+}
+
+/* Relationship Live Timer Component */
+.timer-container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 680px;
+}
+
+.timer-label {
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-light-muted);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.timer-label .live-dot {
+  width: 7px;
+  height: 7px;
+  background-color: var(--red-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--red-accent);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+.timer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  width: 100%;
+}
+
+.timer-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 1.25rem 0.5rem;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.timer-card:hover {
+  border-color: rgba(243, 166, 188, 0.3);
+  transform: translateY(-2px);
+}
+
+.timer-value {
+  font-family: var(--font-serif-display);
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 600;
+  color: var(--text-light-primary);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.timer-card:nth-child(4) .timer-value {
+  color: var(--pink-light);
+}
+
+.timer-unit {
+  font-size: var(--fs-micro);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-light-muted);
+}
+
+/* Compact Romantic Music Player Widget */
+.audio-player-widget {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1000;
+  width: 330px;
+  max-width: calc(100vw - 2rem);
+  background: rgba(14, 14, 16, 0.9);
+  border: 1px solid rgba(243, 166, 188, 0.22);
+  border-radius: 20px;
+  padding: 0.9rem 1.1rem;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 0 25px rgba(243, 166, 188, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.audio-player-widget:hover {
+  border-color: rgba(243, 166, 188, 0.4);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65), 0 0 35px rgba(243, 166, 188, 0.15);
+}
+
+/* Song Selector Tabs */
+.audio-song-selector {
+  display: flex;
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.25rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.song-tab {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 9px;
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  color: var(--text-light-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 1px solid transparent;
+}
+
+.song-tab .tab-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+}
+
+.song-tab:hover {
+  color: var(--text-light-primary);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.song-tab.active {
+  background: rgba(243, 166, 188, 0.16);
+  color: var(--pink-light);
+  font-weight: 600;
+  border-color: rgba(243, 166, 188, 0.25);
+}
+
+.song-tab.active .tab-dot {
+  background: var(--pink-main);
+  box-shadow: 0 0 6px var(--pink-main);
+}
+
+/* Player Body: Artwork & Details */
+.audio-player-body {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.audio-art-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+  border: 1px solid rgba(243, 166, 188, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.audio-art-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.audio-player-widget.playing .audio-art-img {
+  transform: scale(1.06);
+}
+
+.audio-art-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.audio-track-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.15rem;
+}
+
+.audio-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.audio-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-light-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.audio-artist {
+  font-size: var(--fs-micro);
+  color: var(--pink-light);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Audio Visualizer Wave */
+.audio-wave {
+  display: flex;
+  align-items: center;
+  gap: 2.5px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.audio-bar {
+  width: 2px;
+  height: 3px;
+  background: var(--pink-main);
+  border-radius: 2px;
+  transition: height 0.2s ease;
+}
+
+.audio-player-widget.playing .audio-bar:nth-child(1) { animation: wave 0.8s infinite ease-in-out; }
+.audio-player-widget.playing .audio-bar:nth-child(2) { animation: wave 0.8s 0.2s infinite ease-in-out; }
+.audio-player-widget.playing .audio-bar:nth-child(3) { animation: wave 0.8s 0.4s infinite ease-in-out; }
+.audio-player-widget.playing .audio-bar:nth-child(4) { animation: wave 0.8s 0.1s infinite ease-in-out; }
+
+/* Seek Timeline / Progress */
+.audio-timeline-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.audio-progress-container {
+  width: 100%;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  touch-action: none;
+}
+
+.audio-progress-track {
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  position: relative;
+  transition: height 0.15s ease;
+}
+
+.audio-progress-container:hover .audio-progress-track {
+  height: 6px;
+}
+
+.audio-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--pink-deep), var(--pink-main));
+  pointer-events: none;
+  transition: width 0.05s linear;
+}
+
+.audio-progress-thumb {
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px var(--pink-main);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.15s;
+  pointer-events: none;
+}
+
+.audio-progress-container:hover .audio-progress-thumb,
+.audio-player-widget.playing .audio-progress-thumb {
+  opacity: 1;
+}
+
+.audio-time-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  color: var(--text-light-muted);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+/* Controls: Playback & Volume */
+.audio-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.audio-playback-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.audio-ctrl-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light-secondary);
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.audio-ctrl-btn:hover {
+  color: var(--pink-light);
+  background: rgba(255, 255, 255, 0.08);
+  transform: scale(1.1);
+}
+
+.audio-play-btn-main {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink-main), var(--pink-rose));
+  color: var(--bg-black-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  box-shadow: 0 4px 14px rgba(233, 142, 170, 0.35);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.audio-play-btn-main:hover {
+  background: var(--pink-light);
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(243, 166, 188, 0.5);
+}
+
+.audio-volume-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.audio-vol-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light-muted);
+  background: transparent;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.audio-vol-btn:hover {
+  color: var(--pink-light);
+}
+
+.audio-slider-container {
+  display: flex;
+  align-items: center;
+  width: 65px;
+}
+
+.audio-vol-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 3.5px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+  cursor: pointer;
+}
+
+.audio-vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--pink-main);
+  cursor: pointer;
+  box-shadow: 0 0 6px var(--pink-main);
+  transition: transform 0.15s;
+}
+
+.audio-vol-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+  background: var(--pink-light);
+}
+
+.audio-vol-slider::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--pink-main);
+  cursor: pointer;
+  border: none;
+}
+
+/* Buttons & Links */
+.btn-romantic {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.8rem;
+  border-radius: 999px;
+  background: var(--pink-main);
+  color: var(--bg-black-deep);
+  font-weight: 600;
+  font-size: var(--fs-small);
+  transition: all var(--transition-fast);
+}
+
+.btn-romantic:hover {
+  background: var(--pink-light);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(233, 142, 170, 0.35);
+}
+
+/* Keyframe Animations */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.4; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+@keyframes gentlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes wave {
+  0%, 100% { height: 4px; }
+  50% { height: 16px; }
+}

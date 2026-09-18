@@ -1,0 +1,154 @@
+/* Responsive System Across Exact Target Viewports */
+
+/* Tablets & Small Laptops (<= 1024px) */
+@media (max-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .travel-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .scooty-stat-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablets (<= 768px) */
+@media (max-width: 768px) {
+  .site-nav {
+    padding: 1rem 1.25rem;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links.nav-open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(9, 9, 9, 0.95);
+    padding: 1.5rem 2rem;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-dark);
+    gap: 1.25rem;
+  }
+
+  .nav-mobile-toggle {
+    display: block;
+  }
+
+  .timer-grid {
+    gap: 0.5rem;
+  }
+
+  .timer-card {
+    padding: 1rem 0.25rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .loves-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .travel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .future-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .scooty-stat-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .story-media img {
+    height: 340px;
+  }
+
+  #thoughts-canvas {
+    height: 480px;
+  }
+
+  .audio-player-widget {
+    bottom: 1rem;
+    right: 1rem;
+    width: calc(100vw - 2rem);
+    max-width: 320px;
+    padding: 0.75rem 0.9rem;
+  }
+}
+
+/* Mobile Devices (<= 480px / 375x812 / 390x844) */
+@media (max-width: 480px) {
+  .section {
+    padding: 4rem 1.25rem;
+  }
+
+  .hero-section {
+    padding: 6.5rem 1.25rem 4rem 1.25rem;
+  }
+
+  .letter-paper {
+    padding: 2rem 1.25rem;
+  }
+
+  .scooty-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .date-highlight-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .notice-pill {
+    padding: 0.85rem 1.25rem;
+    font-size: var(--fs-small);
+  }
+
+  .story-media img {
+    height: 280px;
+  }
+
+  #thoughts-canvas {
+    height: 420px;
+  }
+
+  .timer-value {
+    font-size: 1.8rem;
+  }
+
+  .audio-player-widget {
+    bottom: 0.75rem;
+    right: 0.75rem;
+    width: calc(100vw - 1.5rem);
+    max-width: 300px;
+    padding: 0.75rem 0.8rem;
+  }
+}
+
+/* Ultra-wide / 1920px Displays */
+@media (min-width: 1800px) {
+  :root {
+    --container-max: 1360px;
+  }
+
+  .story-media img {
+    height: 580px;
+  }
+}

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Kruuuu — A Window Into My Heart</title>
+  <meta name="description" content="A private digital love letter, memory archive, and interactive relationship story." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Stylesheets -->
+  <script type="module" crossorigin src="/assets/index-BedON5cv.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BHNuJGkM.css">
+</head>
+<body>
+
+  <!-- Opening Experience -->
+  <div id="opening-screen">
+    <div class="opening-badge">
+      <span style="color: var(--red-accent);">♥</span> Private Memory Archive
+    </div>
+    <h1 class="opening-title">Hey, Kruuuu.</h1>
+    <p class="opening-subtitle">I made something for you.</p>
+    <button id="btn-come-inside" class="btn-open" aria-label="Enter website">
+      <span>He tari click kr nahi mhnu nako</span>
+      <span class="arrow">→</span>
+    </button>
+  </div>
+
+  <!-- Top Navigation -->
+  <header class="site-nav">
+    <a href="#" class="nav-logo">
+      <span>Kruuu and Soham</span>
+      <span class="heart-dot">♥</span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#story" class="nav-link">Story</a></li>
+        <li><a href="#memories" class="nav-link">Memories</a></li>
+        <li><a href="#loves" class="nav-link">Things i love</a></li>
+        <li><a href="#notices" class="nav-link">Things i notice</a></li>
+        <li><a href="#thoughts" class="nav-link">My mind</a></li>
+        <li><a href="#future" class="nav-link">Future</a></li>
+        <li><a href="#letter" class="nav-link">Letter</a></li>
+      </ul>
+      <button class="nav-mobile-toggle" aria-label="Toggle navigation menu">☰</button>
+    </nav>
+  </header>
+
+  <!-- Compact Romantic Music Player Widget -->
+  <aside id="audio-player-widget" class="audio-player-widget" aria-label="Music player">
+    <!-- Song Switcher Tabs -->
+    <div class="audio-song-selector" role="tablist" aria-label="Select Song">
+      <button class="song-tab active" data-index="0" type="button" aria-label="Switch to Ehsaas (acoustic)">
+        <span class="tab-dot"></span> Ehsaas (acoustic)
+      </button>
+      <button class="song-tab" data-index="1" type="button" aria-label="Switch to Meri Banogi Kya">
+        <span class="tab-dot"></span> Meri Banogi Kya
+      </button>
+    </div>
+
+    <!-- Main Track Body -->
+    <div class="audio-player-body">
+      <!-- Song Artwork -->
+      <div class="audio-art-wrap">
+        <img id="audio-art-img" src="/assets/images/album-ehsaas.jpg" alt="Ehsaas (acoustic) album cover" class="audio-art-img" />
+        <div class="audio-art-glow"></div>
+      </div>
+
+      <!-- Track Information -->
+      <div class="audio-track-info">
+        <div class="audio-title-row">
+          <span id="audio-title" class="audio-title">Ehsaas (acoustic)</span>
+          <div class="audio-wave" id="audio-wave-anim" aria-hidden="true">
+            <div class="audio-bar"></div>
+            <div class="audio-bar"></div>
+            <div class="audio-bar"></div>
+            <div class="audio-bar"></div>
+          </div>
+        </div>
+        <span id="audio-artist" class="audio-artist">Faheem Abdullah</span>
+      </div>
+    </div>
+
+    <!-- Seek / Progress Timeline -->
+    <div class="audio-timeline-wrap">
+      <div class="audio-progress-container" id="audio-progress-container" role="progressbar" aria-label="Song progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+        <div class="audio-progress-track">
+          <div id="audio-progress-bar" class="audio-progress-fill" style="width: 0%;"></div>
+          <div id="audio-progress-thumb" class="audio-progress-thumb" style="left: 0%;"></div>
+        </div>
+      </div>
+      <div class="audio-time-row">
+        <span id="audio-current-time" class="audio-time">0:00</span>
+        <span id="audio-total-duration" class="audio-time">1:23</span>
+      </div>
+    </div>
+
+    <!-- Controls Row: Prev, Play/Pause, Next & Volume -->
+    <div class="audio-controls-row">
+      <div class="audio-playback-controls">
+        <button id="audio-prev-btn" class="audio-ctrl-btn" type="button" aria-label="Previous song" title="Previous song">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+            <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/>
+          </svg>
+        </button>
+
+        <button id="audio-play-btn" class="audio-play-btn-main" type="button" aria-label="Play or pause" title="Play / Pause">
+          <span id="audio-play-icon">&#9658;</span>
+        </button>
+
+        <button id="audio-next-btn" class="audio-ctrl-btn" type="button" aria-label="Next song" title="Next song">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Volume Control -->
+      <div class="audio-volume-wrap">
+        <button id="audio-volume-btn" class="audio-vol-btn" type="button" aria-label="Toggle mute" title="Mute/Unmute">
+          <svg id="vol-icon-high" viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+          </svg>
+          <svg id="vol-icon-mute" viewBox="0 0 24 24" width="15" height="15" fill="currentColor" style="display: none;">
+            <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4 9.91 6.09 12 8.18V4z"/>
+          </svg>
+        </button>
+        <div class="audio-slider-container">
+          <input type="range" id="audio-volume-slider" class="audio-vol-slider" min="0" max="1" step="0.01" value="0.85" aria-label="Volume slider" />
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <!-- Section 1: Hero & Relationship Timer -->
+    <section class="section hero-section" id="hero">
+      <div class="ambient-glow-bg"></div>
+      <span class="hero-subtitle">Our Private Digital Story</span>
+      <h1 class="hero-title">You opened a website and accidentally opened a <em>window into my heart.</em></h1>
+      <p class="hero-summary">
+        Every glance, every walk through Pune, every late-night call, and everything I feel for you.
+      </p>
+
+      <!-- Live Relationship Counter -->
+      <div class="timer-container reveal-on-scroll">
+        <div class="timer-label">
+          <span class="live-dot"></span>
+          <span>Officially Choosing Each Other Since 14 August 2026</span>
+        </div>
+        <div class="timer-grid">
+          <div class="timer-card">
+            <div id="timer-days" class="timer-value">00</div>
+            <div class="timer-unit">Days</div>
+          </div>
+          <div class="timer-card">
+            <div id="timer-hours" class="timer-value">00</div>
+            <div class="timer-unit">Hours</div>
+          </div>
+          <div class="timer-card">
+            <div id="timer-minutes" class="timer-value">00</div>
+            <div class="timer-unit">Minutes</div>
+          </div>
+          <div class="timer-card">
+            <div id="timer-seconds" class="timer-value">00</div>
+            <div class="timer-unit">Seconds</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Breathing Quote -->
+    <section class="breathing-quote-section section-cream">
+      <blockquote class="breathing-quote reveal-on-scroll">
+        "Before you were my girlfriend, you were already the only person I wanted to talk to."
+      </blockquote>
+    </section>
+
+    <!-- Section 2: Pune Memories Timeline -->
+    <section class="section section-white" id="story">
+      <div class="container">
+        <header class="section-header reveal-on-scroll">
+          <span class="section-subtitle">Our Memories</span>
+          <h2 class="section-title">How we went from <em>strangers</em> to this</h2>
+          <p class="section-desc">
+            We had an awkward start, but step by step, everything changed. I really wish we could've met earlier :)
+          </p>
+        </header>
+
+        <div id="story-chapters-wrap">
+          <!-- Dynamically populated from src/data/story.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Devotion / Krishna Metaphor Section -->
+    <section class="section section-dark">
+      <div class="container-narrow reveal-on-scroll" style="text-align: center;">
+        <span class="badge-pill badge-dark">Devotion</span>
+        <h2 class="section-title" style="margin-top: 1rem;">The kind of love I want to give you</h2>
+        <blockquote class="story-quote" style="border: none; padding: 0; margin: 2rem auto; max-width: 680px; font-size: clamp(1.4rem, 2.5vw, 2.2rem);">
+          "I want to love you with the kind of devotion I associate with Krishna and Radha. Patient, honest, and always there for you."
+        </blockquote>
+        <p style="color: var(--text-light-secondary); line-height: 1.8;">
+          When I asked Krishna about you at ISKCON Pune, I just wanted guidance so I could always treat you right and take care of you.
+        </p>
+      </div>
+    </section>
+
+    <!-- Special Scooty Memory & Nightouts Spotlight -->
+    <section class="section section-cream" id="scooty-story">
+      <div class="container">
+        <div class="scooty-card reveal-on-scroll">
+          <span class="badge-pill badge-light">Pune walks & nights</span>
+          <h3 class="section-title" style="margin-top: 0.5rem;">All because we couldn't find a Rapido :)</h3>
+          <p style="font-size: var(--fs-body-lg); line-height: 1.8; color: var(--text-dark-secondary);">
+            I had to return my friend's scooty, and Vrinda and Prem told you to come along with me. I told you we'd just take an auto or Rapido back, but we couldn't find any rides at all. So we ended up walking around 4 to 5 km together.
+          </p>
+
+          <div class="scooty-stat-grid">
+            <div class="scooty-stat-item">
+              <div class="scooty-stat-num">5 km</div>
+              <div class="scooty-stat-lbl">walking through Pune</div>
+            </div>
+            <div class="scooty-stat-item">
+              <div class="scooty-stat-num">sorry</div>
+              <div class="scooty-stat-lbl">many apologies from me</div>
+            </div>
+            <div class="scooty-stat-item">
+              <div class="scooty-stat-num">3-4</div>
+              <div class="scooty-stat-lbl">nightouts we loved</div>
+            </div>
+          </div>
+
+          <p style="color: var(--text-dark-secondary); line-height: 1.8;">
+            During that walk, you told me your period had started a couple days earlier. I immediately felt so bad and kept apologizing the whole way because I didn't want you to be in pain. You said it was okay and laughed at how much I was stressing, but I kept saying sorry anyway.
+          </p>
+          <p style="color: var(--text-dark-secondary); line-height: 1.8; margin-top: 1rem;">
+            That walk was just one of the things we did. During those last days in Pune, we also went for nightouts around 3 to 4 times, and I loved those nights so much. I really wish we could do those nightouts again.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 & 15 August Landmark -->
+    <section class="section section-dark-deep">
+      <div class="container">
+        <div class="date-highlight-card reveal-on-scroll">
+          <div class="date-big-number">14 · 15</div>
+          <div class="date-month-year">AUGUST 2026 · PUNE</div>
+          <p style="max-width: 680px; margin: 0 auto 1.5rem auto; font-size: var(--fs-body-lg); color: var(--text-light-secondary); line-height: 1.8;">
+            On 14 August, I finally confessed my feelings to you. And on 15 August, our last night in Pune, we roamed the city streets together and had our first kiss.
+          </p>
+          <span style="color: var(--pink-light); font-style: italic; font-family: var(--font-serif-editorial); font-size: 1.3rem;">
+            "Those two days mean everything to me."
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Visual Memory Archive -->
+    <section class="section section-white" id="memories">
+      <div class="container">
+        <header class="section-header reveal-on-scroll">
+          <span class="section-subtitle">Visual Archive</span>
+          <h2 class="section-title">Moments carved in <em>time</em></h2>
+          <p class="section-desc">
+            A growing gallery of where we've been, with space left open for everywhere we are still going to go.
+          </p>
+        </header>
+
+        <div id="gallery-grid-wrap" class="gallery-grid">
+          <!-- Dynamically populated from src/data/memories.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Things I Love About You -->
+    <section class="section section-cream" id="loves">
+      <div class="container">
+        <header class="section-header reveal-on-scroll">
+          <span class="section-subtitle">Intimate Details</span>
+          <h2 class="section-title">Things I <em>love</em> about you</h2>
+          <p class="section-desc">
+            Not generic compliments. Just the real, honest, and cute things about who you are.
+          </p>
+        </header>
+
+        <div id="loves-grid-wrap" class="loves-grid">
+          <!-- Dynamically populated from src/data/loves.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Things I Notice -->
+    <section class="section section-dark" id="notices">
+      <div class="container">
+        <header class="section-header reveal-on-scroll">
+          <span class="section-subtitle">Little Things</span>
+          <h2 class="section-title">You probably don't even realise I <em>notice these</em></h2>
+          <p class="section-desc">
+            You do them so naturally, but I notice every single one.
+          </p>
+        </header>
+
+        <div id="notices-wrap" class="notices-wrap">
+          <!-- Dynamically populated from src/data/loves.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Inside My Head (Canvas Thought Constellation) -->
+    <section class="thoughts-section" id="thoughts">
+      <div class="container" style="text-align: center; position: relative; z-index: 10;">
+        <span class="section-subtitle">Unfiltered Thoughts</span>
+        <h2 class="section-title">Inside my head throughout the day</h2>
+        <p class="section-desc" style="max-width: 600px; margin: 0 auto 1.5rem auto;">
+          Hover or touch the thoughts drifting in my mind. You are in almost every single one.
+        </p>
+      </div>
+
+      <canvas id="thoughts-canvas"></canvas>
+    </section>
+
+    <!-- Section 7: When I Miss You -->
+    <section class="section section-white">
+      <div class="intimate-container reveal-on-scroll">
+        <span class="section-subtitle">Long distance</span>
+        <h2 class="intimate-heading">When I miss you...</h2>
+        <p class="intimate-lead">
+          I really just want this long-distance phase to end so we can be together.
+        </p>
+        <p style="color: var(--text-dark-secondary); line-height: 1.85;">
+          I want us to live together during our degree and hopefully be in the same college. When I can't call you or when you're busy, I just open my gallery, look at your photos, and adore you from here.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 8: You Don't See What I See -->
+    <section class="section section-cream">
+      <div class="intimate-container reveal-on-scroll">
+        <span class="badge-pill badge-light">For you</span>
+        <h2 class="intimate-heading">You don't see what I see when I look at you.</h2>
+        <p class="intimate-lead">
+          I know you sometimes underestimate yourself. You doubt yourself in studies, life, your appearance, and your hair.
+        </p>
+        <div class="intimate-points">
+          <div class="intimate-point-item">
+            <strong>How smart you are:</strong> You are good at what you do and have so much potential.
+          </div>
+          <div class="intimate-point-item">
+            <strong>How beautiful you are:</strong> You are genuinely so pretty, especially when you open your hair or laugh.
+          </div>
+          <div class="intimate-point-item">
+            <strong>How kind you are:</strong> Your sensitivity and how much you care about kids and your family.
+          </div>
+        </div>
+        <p style="font-family: var(--font-serif-editorial); font-size: 1.4rem; font-style: italic; color: var(--pink-deep);">
+          "I don't want to change you, Kruuuu. I just want you to love the person you already are."
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 9: Take Your Time (Updated per User Requirement 9) -->
+    <section class="section section-dark">
+      <div class="intimate-container reveal-on-scroll">
+        <span class="badge-pill badge-dark">Always here</span>
+        <h2 class="intimate-heading" style="color: var(--text-light-primary);">Take your time. I'm not going anywhere.</h2>
+        <p style="color: var(--text-light-secondary); line-height: 1.85; margin-bottom: 2rem;">
+          You are allowed to take your time and get up from your past. I'll forever be there for you, through good days and bad days. You don't have to be alone.
+        </p>
+        <div style="padding: 2rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border-dark); border-radius: 20px;">
+          <p style="font-size: var(--fs-body-lg); color: var(--pink-light); font-style: italic; margin-bottom: 0;">
+            "Take all the time you need. I'm right here beside you."
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 10: I'm Not Perfect Either -->
+    <section class="section section-white">
+      <div class="intimate-container reveal-on-scroll">
+        <span class="section-subtitle">Just being honest</span>
+        <h2 class="intimate-heading">I'm not perfect either.</h2>
+        <p class="intimate-lead">
+          I know I have flaws and I'll make mistakes sometimes. But I am trying my best to become better for you.
+        </p>
+        <p style="color: var(--text-dark-secondary); line-height: 1.85;">
+          I know we will have difficult times and arguments. But I believe difficult moments can make our relationship stronger when both of us choose to work through them. I don't expect us to be perfect. I just want us to keep choosing each other.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 11: The Way I Want To Love You & Our Promise -->
+    <section class="section section-cream">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 3rem;">
+          <div class="reveal-on-scroll">
+            <span class="badge-pill badge-light">How I want to love you</span>
+            <h3 class="section-title">Making you feel safe and loved</h3>
+            <p style="color: var(--text-dark-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+              I don't want to be like people who hurt you in the past. I want you to always feel safe, heard, respected, wanted, and free to be yourself.
+            </p>
+            <p style="color: var(--pink-deep); font-style: italic; font-family: var(--font-serif-editorial); font-size: 1.25rem;">
+              "You are sensitive and sometimes need extra care, and I want to take care of you whenever you need me. I want you to feel like the happiest girl."
+            </p>
+          </div>
+
+          <div class="reveal-on-scroll" style="background: var(--bg-white-pure); padding: 2.5rem; border-radius: 20px; border: 1px solid var(--border-light); box-shadow: var(--shadow-subtle);">
+            <span class="badge-pill badge-light">Our Promise</span>
+            <h3 class="section-title">Always on the same side</h3>
+            <blockquote class="story-quote" style="border: none; padding: 0; margin-bottom: 1.5rem;">
+              "Even when things get hard, let's find our way back to each other."
+            </blockquote>
+            <p style="color: var(--text-dark-secondary); line-height: 1.8;">
+              When things get difficult, let's remember why we chose each other. I want us to talk, understand each other, and remember that we're on the same team. I want forever with you.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 12: Future Plans & Travel Wishlist -->
+    <section class="section section-dark" id="future">
+      <div class="container">
+        <header class="section-header reveal-on-scroll">
+          <span class="section-subtitle">Our Future</span>
+          <h2 class="section-title">Things I want to do <em>with you</em></h2>
+          <p class="section-desc">
+            All the plans, trips, and everyday moments I can't wait to share with you.
+          </p>
+        </header>
+
+        <!-- Travel Cards -->
+        <div id="travel-grid-wrap" class="travel-grid" style="margin-bottom: 3.5rem;">
+          <!-- Dynamically populated from src/data/future.js -->
+        </div>
+
+        <!-- Bucket List -->
+        <div id="future-grid-wrap" class="future-grid">
+          <!-- Dynamically populated from src/data/future.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 13: Final Personal Letter -->
+    <section class="letter-section" id="letter">
+      <div class="container-narrow">
+        <article class="letter-paper reveal-on-scroll">
+          <h2 class="letter-salutation">Hey Kruuuu,</h2>
+          <div id="letter-body-wrap" class="letter-body">
+            <!-- Dynamically populated from src/data/future.js -->
+          </div>
+          <div id="letter-signoff-wrap" class="letter-signoff">
+            <!-- Dynamically populated from src/data/future.js -->
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 14: Climax Heart Experience -->
+    <section class="climax-section" id="climax">
+      <div class="climax-text-wrap reveal-on-scroll">
+        <h2 class="climax-whisper">Kruuuu...</h2>
+        <p class="climax-statement">
+          I don't know how many words it would take to explain everything I feel for you. But I know one thing: I want you in my life.
+        </p>
+        <div class="climax-declaration">I love you.</div>
+      </div>
+
+      <!-- Canvas Particle Heart -->
+      <canvas id="climax-heart-canvas"></canvas>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <p>Crafted exclusively with love for Kruuuu <span class="heart-icon">♥</span> 2026</p>
+    <p style="font-size: var(--fs-micro); margin-top: 0.5rem; opacity: 0.6;">Designed for 144Hz Smoothness & Infinite Memories</p>
+  </footer>
+
+  <!-- Main JavaScript Bundle -->
+</body>
+</html>
