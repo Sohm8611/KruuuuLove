@@ -67,7 +67,7 @@ function renderMemories() {
       <div class="memory-polaroid-img-wrap">
         <img src="${m.image}" alt="${m.title}" loading="lazy" decoding="async" />
       </div>
-      <span class="memory-polaroid-date">${m.date} · ${m.location}</span>
+      ${(m.date || m.location) ? `<span class="memory-polaroid-date">${[m.date, m.location].filter(Boolean).join(' · ')}</span>` : ''}
       <h4 class="memory-polaroid-title">${m.title}</h4>
       <p class="memory-polaroid-caption">${m.caption}</p>
     </div>
@@ -141,6 +141,6 @@ function renderLetter() {
     letterBody.innerHTML = FINAL_LETTER.paragraphs.map(p => `<p>${p}</p>`).join('');
   }
   if (letterSignoff) {
-    letterSignoff.innerHTML = FINAL_LETTER.signoff.replace(/\n/g, '<br>');
+    letterSignoff.innerHTML = FINAL_LETTER.signoff.replace(/\*(.*?)\*/g, '<em>$1</em>').replace(/\n/g, '<br>');
   }
 }

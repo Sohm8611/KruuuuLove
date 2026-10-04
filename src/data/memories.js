@@ -68,13 +68,12 @@ export const MEMORIES = [
     details: "Roaming under the midnight sky. Our first kiss, gentle and sacred."
   },
   {
-    id: "mem-06",
-    title: "Our Next Chapter",
-    date: "Future Ahead",
-    location: "Wherever you are",
-    category: "To Be Continued",
-    image: "/assets/images/placeholder.jpg",
-    caption: "Reserved for the hundreds of photographs we haven't taken yet.",
-    details: "Waiting to be filled with our road trips, college degree days, international flights, and everyday laughter."
+    id: "mem-visit",
+    title: "Kinda surprise visit",
+    date: "",
+    location: "",
+    category: "Surprise Visit",
+    image: "/assets/images/visit.jpeg",
+    caption: "The time I came to meet you just because I was missing you soooo much and wanted to meet you soo badly."
   }
 ];
