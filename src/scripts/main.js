@@ -11,8 +11,13 @@ import { initHeartCanvas } from './heart-canvas.js';
 import { initAudioPlayer } from './audio-player.js';
 import { initScrollSystem } from './story-scroll.js';
 import { initPerformanceGuard } from './performance-monitor.js';
+import { memoryStore } from './cms/memory-store.js';
+import { initCMS, startEditMemory, promptDeleteMemory } from './cms/cms-modal.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize CMS system and Memory Store
+  initCMS();
+
   // Render Dynamic Content
   renderStoryChapters();
   renderMemories();
@@ -30,11 +35,31 @@ document.addEventListener('DOMContentLoaded', () => {
   initAudioPlayer();
   initPerformanceGuard();
 
+  // Async initialize persistent memories store
+  memoryStore.init().then(() => {
+    renderMemories();
+  });
+
+  // Re-render when memory store updates
+  memoryStore.subscribe(({ memories, isAdmin }) => {
+    renderMemories(memories, isAdmin);
+  });
+
   // Initialize scroll reveals
   setTimeout(() => {
     initScrollSystem();
   }, 50);
 });
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
 
 function renderStoryChapters() {
   const container = document.getElementById('story-chapters-wrap');
@@ -58,20 +83,57 @@ function renderStoryChapters() {
   }).join('');
 }
 
-function renderMemories() {
+function renderMemories(memories = memoryStore.getMemories(), isAdmin = memoryStore.isAdmin()) {
   const container = document.getElementById('gallery-grid-wrap');
   if (!container) return;
 
-  container.innerHTML = MEMORIES.map(m => `
-    <div class="memory-polaroid reveal-on-scroll">
-      <div class="memory-polaroid-img-wrap">
-        <img src="${m.image}" alt="${m.title}" loading="lazy" decoding="async" />
+  const list = memories && memories.length > 0 ? memories : MEMORIES;
+
+  container.innerHTML = list.map(m => {
+    const adminActions = isAdmin ? `
+      <div class="memory-admin-actions">
+        <button class="memory-admin-btn btn-edit" data-edit-memory-id="${m.id}" title="Edit Memory" aria-label="Edit Memory">✎</button>
+        <button class="memory-admin-btn btn-delete" data-delete-memory-id="${m.id}" title="Delete Memory" aria-label="Delete Memory">🗑</button>
       </div>
-      ${(m.date || m.location) ? `<span class="memory-polaroid-date">${[m.date, m.location].filter(Boolean).join(' · ')}</span>` : ''}
-      <h4 class="memory-polaroid-title">${m.title}</h4>
-      <p class="memory-polaroid-caption">${m.caption}</p>
-    </div>
-  `).join('');
+    ` : '';
+
+    const dateLocation = [m.date, m.location].filter(Boolean).join(' · ');
+
+    const paragraphHtml = (m.details && m.details !== m.caption)
+      ? `<div class="memory-polaroid-paragraph">${escapeHtml(m.details)}</div>`
+      : '';
+
+    return `
+      <div class="memory-polaroid reveal-on-scroll is-revealed" data-memory-id="${m.id}">
+        ${adminActions}
+        <div class="memory-polaroid-img-wrap">
+          <img src="${m.image}" alt="${escapeHtml(m.title)}" loading="lazy" decoding="async" />
+        </div>
+        ${dateLocation ? `<span class="memory-polaroid-date">${escapeHtml(dateLocation)}</span>` : ''}
+        <h4 class="memory-polaroid-title">${escapeHtml(m.title)}</h4>
+        <p class="memory-polaroid-caption">${escapeHtml(m.caption || '')}</p>
+        ${paragraphHtml}
+      </div>
+    `;
+  }).join('');
+
+  if (isAdmin) {
+    container.querySelectorAll('[data-edit-memory-id]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = btn.getAttribute('data-edit-memory-id');
+        startEditMemory(id);
+      });
+    });
+
+    container.querySelectorAll('[data-delete-memory-id]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = btn.getAttribute('data-delete-memory-id');
+        promptDeleteMemory(id);
+      });
+    });
+  }
 }
 
 function renderLoves() {
