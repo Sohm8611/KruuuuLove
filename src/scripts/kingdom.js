@@ -16,13 +16,10 @@ import {
   MICROCOPY
 } from '../data/kingdomData.js';
 
-let audioPlayer = null;
-let isAudioPlaying = false;
 const flippedCardIds = new Set();
 
 document.addEventListener('DOMContentLoaded', () => {
   initStarfield();
-  initAudio();
   renderAllSections();
   setupInvitationInteraction();
   setupCardInteractions();
@@ -139,45 +136,7 @@ function initStarfield() {
 }
 
 /**
- * 2. AUDIO INTEGRATION
- */
-function initAudio() {
-  audioPlayer = new Audio(KINGDOM_CONFIG.musicSrc);
-  audioPlayer.loop = true;
-  audioPlayer.volume = 0.75;
-
-  const audioBtn = document.getElementById('kingdom-audio-toggle');
-  if (!audioBtn) return;
-
-  audioBtn.addEventListener('click', toggleAudio);
-}
-
-function toggleAudio() {
-  const audioBtn = document.getElementById('kingdom-audio-toggle');
-  if (!audioPlayer) return;
-
-  if (isAudioPlaying) {
-    audioPlayer.pause();
-    isAudioPlaying = false;
-    if (audioBtn) {
-      audioBtn.classList.remove('playing');
-      audioBtn.innerHTML = '<span>🎵 Play Music</span>';
-    }
-  } else {
-    audioPlayer.play().then(() => {
-      isAudioPlaying = true;
-      if (audioBtn) {
-        audioBtn.classList.add('playing');
-        audioBtn.innerHTML = '<span>🔊 Playing: Ehsaas</span>';
-      }
-    }).catch(err => {
-      console.log('Audio playback waiting for gesture:', err);
-    });
-  }
-}
-
-/**
- * 3. RENDER ALL EXPERIENCE SECTIONS
+ * 2. RENDER ALL EXPERIENCE SECTIONS
  */
 function renderAllSections() {
   renderInvitation();
@@ -321,10 +280,6 @@ function setupInvitationInteraction() {
     if (!overlay) return;
     createSparkleBurst(window.innerWidth / 2, window.innerHeight / 2);
     overlay.classList.add('unsealed');
-
-    if (audioPlayer && !isAudioPlaying) {
-      toggleAudio();
-    }
   }
 
   if (enterBtn) enterBtn.addEventListener('click', breakSeal);

@@ -11,10 +11,7 @@ export const KINGDOM_CONFIG = {
   princessName: "Sanskruti",
   nickname: "Kruuuu",
   princeName: "Soham",
-  royalTitle: "Sanskruti's Little Kingdom 👑",
-  musicSrc: "/assets/music/ehsaas-acoustic.mp3",
-  musicTitle: "Ehsaas (acoustic)",
-  musicArtist: "Faheem Abdullah"
+  royalTitle: "Sanskruti's Little Kingdom 👑"
 };
 
 // 1. ROYAL INVITATION

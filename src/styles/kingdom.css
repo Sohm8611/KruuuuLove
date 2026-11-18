@@ -157,37 +157,6 @@ body.kingdom-body {
   gap: 0.4rem;
 }
 
-.kingdom-nav-audio-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: rgba(244, 63, 94, 0.15);
-  border: 1px solid rgba(244, 63, 94, 0.35);
-  color: #ffe4e6;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.kingdom-nav-audio-btn:hover {
-  background: rgba(244, 63, 94, 0.3);
-  transform: scale(1.05);
-  box-shadow: var(--glow-pink);
-}
-
-.kingdom-nav-audio-btn.playing {
-  background: rgba(244, 63, 94, 0.35);
-  border-color: var(--princess-rose);
-  animation: audioPulse 2s infinite ease-in-out;
-}
-
-@keyframes audioPulse {
-  0%, 100% { box-shadow: 0 0 10px rgba(244, 63, 94, 0.4); }
-  50% { box-shadow: 0 0 22px rgba(244, 63, 94, 0.8); }
-}
-
 /* ==========================================================================
    ACT 1: ROYAL INVITATION SCREEN
    ========================================================================== */
