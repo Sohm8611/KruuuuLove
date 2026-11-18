@@ -278,11 +278,6 @@ function renderPromises() {
       <p class="promise-pledge">“${escapeHtml(p.text)}”</p>
     </div>
   `).join('');
-
-  const finalParaEl = document.getElementById('promises-final-para');
-  if (finalParaEl) {
-    finalParaEl.textContent = ROYAL_PROMISES.finalParagraph;
-  }
 }
 
 function renderHug() {

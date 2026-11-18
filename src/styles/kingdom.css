@@ -843,23 +843,6 @@ body.kingdom-body {
   flex-grow: 1;
 }
 
-.promises-final-box {
-  background: linear-gradient(145deg, rgba(42, 16, 75, 0.85) 0%, rgba(22, 7, 42, 0.95) 100%);
-  border: 1.5px solid rgba(244, 63, 94, 0.45);
-  border-radius: 20px;
-  padding: 2.2rem 2rem;
-  text-align: center;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), var(--glow-pink);
-}
-
-.promises-final-text {
-  font-family: var(--font-fairytale);
-  font-size: 1.15rem;
-  line-height: 1.8;
-  color: var(--purple-mist);
-  font-style: italic;
-}
-
 /* ==========================================================================
    ACT 6: ROYAL HUG DELIVERY
    ========================================================================== */

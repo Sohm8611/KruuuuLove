@@ -170,8 +170,7 @@ export const ROYAL_PROMISES = {
       icon: "🤍",
       text: "I'll keep reminding you how special you are to me, even on completely ordinary days."
     }
-  ],
-  finalParagraph: "Bala, I know neither of us is perfect and I don't expect us to be. I just want us to keep understanding each other, communicating and choosing each other. I want this to be a relationship where both of us feel loved, respected and safe to be ourselves. That's what I genuinely want with you. ❤️"
+  ]
 };
 
 // 6. ROYAL HUG DELIVERY
