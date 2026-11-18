@@ -53,6 +53,10 @@
   transition: color var(--transition-fast);
 }
 
+.nav-link.nav-link-kingdom {
+  text-transform: none;
+}
+
 .nav-link::after {
   content: '';
   position: absolute;
