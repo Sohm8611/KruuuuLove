@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sanskruti's Little Kingdom 👑 — For Kruuuu</title>
+  <meta name="description" content="A special magical kingdom experience created exclusively for Princess Sanskruti." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Stylesheets -->
+  <script type="module" crossorigin src="/assets/kingdom-3rFZeeQQ.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/variables-Cb3iap-h.js">
+  <link rel="stylesheet" crossorigin href="/assets/variables-Bz7lMzm4.css">
+  <link rel="stylesheet" crossorigin href="/assets/kingdom-ByEMCIlJ.css">
+</head>
+
+<body class="kingdom-body">
+
+  <!-- Background Starry Sky Canvas -->
+  <canvas id="kingdom-star-canvas"></canvas>
+
+  <!-- Ambient Floating Particles & Hearts -->
+  <div id="kingdom-particles-container"></div>
+
+  <!-- 1. ROYAL INVITATION SCREEN -->
+  <div id="royal-invitation-overlay" class="invitation-overlay" role="dialog" aria-modal="true"
+    aria-label="Royal Invitation">
+    <div class="royal-envelope" id="invitation-content-wrap">
+      <!-- Populated dynamically from src/data/kingdomData.js -->
+    </div>
+  </div>
+
+  <div class="kingdom-wrapper">
+    <!-- Top Kingdom Navigation Bar -->
+    <header class="kingdom-navbar">
+      <a href="/" class="kingdom-nav-back" title="Return to KruuuuLove Homepage">
+        <span>←</span> <span>Back to the castle</span>
+      </a>
+      <div class="kingdom-nav-title">
+        <span>Sanskruti's Little Kingdom</span> 👑
+      </div>
+      <button id="kingdom-audio-toggle" class="kingdom-nav-audio-btn" type="button" aria-label="Toggle Romantic Music">
+        <span>🎵 Play Music</span>
+      </button>
+    </header>
+
+    <main>
+      <!-- 2. WELCOME TO YOUR KINGDOM (Castle & Three Cards) -->
+      <section class="kingdom-hero-section" id="realm">
+        <!-- Glowing Crescent Moon -->
+        <div class="crescent-moon-wrap" aria-hidden="true"></div>
+
+        <div class="kingdom-hero-content">
+          <div class="royal-crown-emblem">👑</div>
+          <h1 class="kingdom-hero-title">Welcome to Your Little Kingdom, Princess Sanskruti 💗</h1>
+          <p class="kingdom-hero-lead">
+            Yk what bala, if I could make a whole kingdom for someone, I'd make it for you. A place where you never have
+            to think twice before being yourself, where your happiness matters, and where you can be as childish, silly,
+            emotional and crazy as you want. Basically a little world where my girl gets all the happiness she deserves.
+            😭❤️
+          </p>
+
+          <!-- Pink Fairytale Princess Castle Illustration -->
+          <div class="castle-illustration-wrap">
+            <svg class="castle-svg" viewBox="0 0 600 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="castleWallGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#4a154b" />
+                  <stop offset="50%" stop-color="#350e47" />
+                  <stop offset="100%" stop-color="#240733" />
+                </linearGradient>
+                <linearGradient id="spireRoofGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#ff70a6" />
+                  <stop offset="50%" stop-color="#d946ef" />
+                  <stop offset="100%" stop-color="#7b2cbf" />
+                </linearGradient>
+                <linearGradient id="goldFinialGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#fef08a" />
+                  <stop offset="100%" stop-color="#d4af37" />
+                </linearGradient>
+                <filter id="windowGlowFilter" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+
+              <!-- Castle Foundation / Base Walls -->
+              <rect x="140" y="240" width="320" height="170" rx="8" fill="url(#castleWallGrad)" stroke="#c77dff"
+                stroke-width="1.5" />
+              <!-- Battlements on main wall -->
+              <rect x="140" y="225" width="40" height="20" rx="3" fill="url(#castleWallGrad)" stroke="#c77dff"
+                stroke-width="1.5" />
+              <rect x="200" y="225" width="40" height="20" rx="3" fill="url(#castleWallGrad)" stroke="#c77dff"
+                stroke-width="1.5" />
+              <rect x="260" y="225" width="80" height="20" rx="3" fill="url(#castleWallGrad)" stroke="#c77dff"
+                stroke-width="1.5" />
+              <rect x="360" y="225" width="40" height="20" rx="3" fill="url(#castleWallGrad)" stroke="#c77dff"
+                stroke-width="1.5" />
+              <rect x="420" y="225" width="40" height="20" rx="3" fill="url(#castleWallGrad)" stroke="#c77dff"
+                stroke-width="1.5" />
+
+              <!-- Left Tower -->
+              <rect x="80" y="150" width="80" height="260" rx="6" fill="url(#castleWallGrad)" stroke="#c77dff"
+                stroke-width="1.5" />
+              <polygon points="120,40 70,150 170,150" fill="url(#spireRoofGrad)" stroke="#fb7185" stroke-width="2" />
+              <circle cx="120" cy="38" r="7" fill="url(#goldFinialGrad)" />
+              <polygon points="120,38 120,18 145,28" fill="#f43f5e" class="castle-flag" />
+
+              <!-- Right Tower -->
+              <rect x="440" y="150" width="80" height="260" rx="6" fill="url(#castleWallGrad)" stroke="#c77dff"
+                stroke-width="1.5" />
+              <polygon points="480,40 430,150 530,150" fill="url(#spireRoofGrad)" stroke="#fb7185" stroke-width="2" />
+              <circle cx="480" cy="38" r="7" fill="url(#goldFinialGrad)" />
+              <polygon points="480,38 480,18 505,28" fill="#f43f5e" class="castle-flag" />
+
+              <!-- Central Keep -->
+              <rect x="230" y="110" width="140" height="140" rx="6" fill="url(#castleWallGrad)" stroke="#c77dff"
+                stroke-width="1.5" />
+              <polygon points="300,10 220,110 380,110" fill="url(#spireRoofGrad)" stroke="#fb7185" stroke-width="2.5" />
+              <circle cx="300" cy="8" r="9" fill="url(#goldFinialGrad)" />
+              <polygon points="300,8 300,-15 332,-3" fill="#fbbf24" class="castle-flag" />
+
+              <!-- Royal Arched Gate Entrance -->
+              <path d="M260 410 V310 C260 280, 340 280, 340 310 V410 Z" fill="#150524" stroke="#d4af37"
+                stroke-width="2.5" />
+              <path d="M268 410 V315 C268 290, 332 290, 332 315 V410 Z" fill="#ffd166" opacity="0.3"
+                class="castle-window-glow" filter="url(#windowGlowFilter)" />
+
+              <!-- Glowing Castle Windows -->
+              <path d="M108 220 V195 C108 185, 132 185, 132 195 V220 Z" class="castle-window-glow" />
+              <path d="M108 300 V275 C108 265, 132 265, 132 275 V300 Z" class="castle-window-glow" />
+              <path d="M468 220 V195 C468 185, 492 185, 492 195 V220 Z" class="castle-window-glow" />
+              <path d="M468 300 V275 C468 265, 492 265, 492 275 V300 Z" class="castle-window-glow" />
+              <path d="M285 170 V145 C285 135, 315 135, 315 145 V170 Z" class="castle-window-glow" />
+
+              <!-- Balcony -->
+              <rect x="275" y="172" width="50" height="8" rx="2" fill="#d4af37" />
+              <line x1="280" y1="172" x2="280" y2="180" stroke="#150524" stroke-width="1.5" />
+              <line x1="290" y1="172" x2="290" y2="180" stroke="#150524" stroke-width="1.5" />
+              <line x1="300" y1="172" x2="300" y2="180" stroke="#150524" stroke-width="1.5" />
+              <line x1="310" y1="172" x2="310" y2="180" stroke="#150524" stroke-width="1.5" />
+              <line x1="320" y1="172" x2="320" y2="180" stroke="#150524" stroke-width="1.5" />
+
+              <!-- Sparkles -->
+              <text x="70" y="80" font-size="18" fill="#ffd166">✦</text>
+              <text x="510" y="90" font-size="16" fill="#f43f5e">✨</text>
+              <text x="350" y="45" font-size="20" fill="#ffd166">✦</text>
+              <text x="210" y="60" font-size="14" fill="#c77dff">✨</text>
+            </svg>
+          </div>
+
+          <!-- Three Welcome Cards -->
+          <div class="welcome-three-cards" id="welcome-three-cards">
+            <!-- Populated dynamically -->
+          </div>
+
+          <div>
+            <a href="#letter" id="btn-lets-explore" class="btn-lets-explore">
+              <span>Let's exploreee ♡</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. A LETTER FROM YOUR BIGGEST ADMIRER -->
+      <section class="kingdom-section" id="letter">
+        <header class="section-head-royal">
+          <span class="royal-section-tag">A SPECIAL LETTER</span>
+          <h2 class="royal-section-title">A Little Letter From Your Biggest Admirer 💌</h2>
+          <p class="royal-section-desc">Open this, pretty girl. I wrote something for youuu.</p>
+        </header>
+
+        <div class="parchment-letter-wrapper">
+          <article class="parchment-scroll" id="royal-letter-body">
+            <!-- Populated dynamically -->
+          </article>
+        </div>
+      </section>
+
+      <!-- 4. SIX REASONS WHY YOU'RE SO SPECIAL -->
+      <section class="kingdom-section" id="special">
+        <header class="section-head-royal">
+          <span class="royal-section-tag">WHY YOU ARE SO SPECIAL</span>
+          <h2 class="royal-section-title">Do You Know Why You're So Special? 🥹</h2>
+          <p class="royal-section-desc">Tap each card, princess. I have a lot to tell youuu.</p>
+        </header>
+
+        <div class="special-cards-grid" id="special-cards-grid">
+          <!-- Populated dynamically -->
+        </div>
+
+        <div id="cards-unlocked-banner" class="cards-unlocked-banner" style="display: none;">
+          HEHEHE, I TOLD YOU THERE'S SO MUCH TO LOVE ABOUT YOU 😭❤️
+        </div>
+      </section>
+
+      <!-- 5. MY LITTLE PROMISES TO YOU -->
+      <section class="kingdom-section" id="promises">
+        <header class="section-head-royal">
+          <span class="royal-section-tag">MY PROMISES</span>
+          <h2 class="royal-section-title">My Little Promises To You, Princess 👑</h2>
+          <p class="royal-section-desc">Not promises of a perfect relationship, just things I genuinely want to keep
+            doing.</p>
+        </header>
+
+        <div class="promises-container">
+          <div class="promises-grid" id="promises-grid">
+            <!-- Populated dynamically -->
+          </div>
+
+          <div class="promises-final-box">
+            <p id="promises-final-para" class="promises-final-text">
+              <!-- Populated dynamically -->
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. ROYAL HUG DELIVERY -->
+      <section class="kingdom-section" id="hug">
+        <header class="section-head-royal">
+          <span class="royal-section-tag">ROYAL HUG DELIVERY</span>
+          <h2 class="royal-section-title">Your Royal Hug Has Arrived! 🫂</h2>
+        </header>
+
+        <div class="virtual-hug-box" id="virtual-hug-box">
+          <div class="hug-characters-scene">
+            <!-- Prince SVG -->
+            <div class="hug-char-prince">
+              <svg width="70" height="90" viewBox="0 0 70 90" fill="none">
+                <path d="M22 24 C18 10, 48 10, 48 24 C50 16, 26 14, 22 24 Z" fill="#2d1b4e" />
+                <circle cx="35" cy="28" r="14" fill="#ffd1b3" />
+                <path d="M30 27 Q32 29 34 27" stroke="#5c2c16" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M36 27 Q38 29 40 27" stroke="#5c2c16" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M32 34 Q35 37 38 34" stroke="#c2410c" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M20 44 L26 82 L44 82 L50 44 Z" fill="#4338ca" stroke="#fbbf24" stroke-width="1.5" />
+                <path d="M46 50 Q60 55 58 64" stroke="#ffd1b3" stroke-width="6" stroke-linecap="round" />
+              </svg>
+            </div>
+
+            <!-- Big Bursting Heart in Center -->
+            <div class="hug-burst-heart">💖</div>
+
+            <!-- Princess SVG -->
+            <div class="hug-char-princess">
+              <svg width="70" height="90" viewBox="0 0 70 90" fill="none">
+                <path d="M28 15 L35 7 L42 15 Z" fill="#fbbf24" stroke="#f43f5e" stroke-width="1" />
+                <circle cx="35" cy="11" r="2" fill="#f43f5e" />
+                <path
+                  d="M18 24 C14 8, 56 8, 52 24 C56 42, 54 62, 50 68 C44 58, 48 38, 46 28 C40 26, 30 26, 24 28 C22 38, 26 58, 20 68 C16 62, 14 42, 18 24 Z"
+                  fill="#1f162b" />
+                <circle cx="35" cy="28" r="14" fill="#ffe4d6" />
+                <path d="M30 27 Q32 29 34 27" stroke="#5c2c16" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M36 27 Q38 29 40 27" stroke="#5c2c16" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M32 34 Q35 37 38 34" stroke="#e11d48" stroke-width="1.5" stroke-linecap="round" />
+                <circle cx="28" cy="31" r="2.5" fill="#fda4af" />
+                <circle cx="42" cy="31" r="2.5" fill="#fda4af" />
+                <path d="M24 44 L16 82 L54 82 L46 44 Z" fill="#db2777" stroke="#fbcfe8" stroke-width="1.5" />
+                <path d="M24 50 Q10 55 12 64" stroke="#ffe4d6" stroke-width="6" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          <p id="hug-message-main" class="hug-message-main">
+            <!-- Populated dynamically -->
+          </p>
+
+          <button id="btn-tight-hug" class="btn-tight-hug" type="button">
+            <span>Send me a hug backkk ♡</span>
+          </button>
+
+          <div id="hug-status-msg" class="hug-status-msg"></div>
+        </div>
+      </section>
+
+      <!-- 7. FINAL SCREEN -->
+      <section class="kingdom-finale-section" id="finale">
+        <div class="finale-crown">👑</div>
+        <h2 id="finale-title" class="finale-title">One Last Thing, My Princess ❤️</h2>
+        <p id="finale-message" class="finale-statement">
+          <!-- Populated dynamically -->
+        </p>
+        <div class="finale-actions-row">
+          <button class="btn-replay-kingdom" id="btn-replay-exp" type="button">
+            Visit our kingdom again ♡
+          </button>
+          <a href="/" class="btn-return-home">
+            ← Back to KruuuuLove
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Kingdom Footer -->
+    <footer class="kingdom-footer">
+      <p>Made with lots of love, by Soham ❤️</p>
+      <p style="margin-top: 0.4rem; opacity: 0.8; font-size: 0.82rem;">Come back whenever you want, princess 💗</p>
+    </footer>
+  </div>
+
+  <!-- Kingdom Script Bundle -->
+</body>
+
+</html>
