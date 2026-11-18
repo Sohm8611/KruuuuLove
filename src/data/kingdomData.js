@@ -26,7 +26,7 @@ export const ROYAL_INVITATION = {
 // 2. WELCOME TO YOUR KINGDOM
 export const KINGDOM_WELCOME = {
   heading: "Welcome to Your Little Kingdom, Princess Sanskruti 💗",
-  paragraph: "Yk what bala, if I could make a whole kingdom for someone, I'd make it for you. A place where you never have to think twice before being yourself, where your happiness matters, and where you can be as childish, silly, emotional and crazy as you want. Basically a little world where my girl gets all the happiness she deserves. 😭❤️",
+  paragraph: "TU AHES BALA, MAZI PRINCESS AHHESSS!🫠👑💗\n\nAnd if I could make a whole kingdom for someone, I'd make it for you. A place where you never have to think twice before being yourself, where your happiness matters, and where you can be as childish, silly, emotional and crazy as you want. Basically a little world where my girl gets all the happiness she deserves. 🫠💗",
   threeCards: [
     {
       id: "card-1",
